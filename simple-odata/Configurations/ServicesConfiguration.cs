@@ -1,9 +1,6 @@
-using Microsoft.Extensions.Options;
 using Microsoft.OData.Edm;
 using Microsoft.OData.ModelBuilder;
-using Microsoft.OpenApi.Models;
 using simple_odata.Data.Entities;
-using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace simple_odata.Configurations;
 

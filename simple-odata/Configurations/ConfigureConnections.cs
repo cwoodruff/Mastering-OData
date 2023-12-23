@@ -1,5 +1,4 @@
 ﻿using System.Runtime.InteropServices;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using simple_odata.Data;
 
@@ -19,7 +18,6 @@ public static class ConfigureConnections
             connection = configuration.GetConnectionString("ChinookDbDocker");
 
         services.AddDbContextPool<ChinookContext>(options => options.UseSqlServer(connection));
-        services.AddSingleton(new SqlConnection(connection));
 
         return services;
     }
