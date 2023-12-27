@@ -1,4 +1,4 @@
-﻿namespace Chinook.API.Configurations;
+﻿namespace simple_odata.Configurations;
 
 public abstract class AppSettings
 {

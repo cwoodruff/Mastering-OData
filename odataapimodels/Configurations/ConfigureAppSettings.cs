@@ -1,4 +1,4 @@
-﻿namespace simple_odata.Configurations;
+﻿namespace odataapimodels.Configurations;
 
 public static class ConfigureAppSettings
 {

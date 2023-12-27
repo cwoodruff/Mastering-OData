@@ -1,8 +1,8 @@
 ﻿using System.Runtime.InteropServices;
 using Microsoft.EntityFrameworkCore;
-using simple_odata.Data;
+using odataapimodels.EFCoreData.Data;
 
-namespace simple_odata.Configurations;
+namespace odataapimodels.Configurations;
 
 public static class ConfigureConnections
 {
