@@ -1,4 +1,3 @@
-using Chinook.API.Configurations;
 using Microsoft.AspNetCore.OData;
 using simple_odata.Configurations;
 
