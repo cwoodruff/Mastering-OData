@@ -10,7 +10,7 @@ using odataapimodels.Domain.Validation;
 using odataapimodels.EFCoreData.Repositories;
 using AutoMapper.EquivalencyExpression;
 using Microsoft.OData.ModelBuilder;
-using odataapimodels.Profiles;
+using odataapimodels.Domain.Profiles;
 
 namespace odataapimodels.Configurations;
 

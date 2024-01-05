@@ -3,7 +3,7 @@ using AutoMapper.EquivalencyExpression;
 using odataapimodels.Domain.ApiModels;
 using odataapimodels.Domain.Entities;
 
-namespace odataapimodels.Profiles;
+namespace odataapimodels.Domain.Profiles;
 
 public class MapperConfig : Profile
 {
