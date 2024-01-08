@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OData.Formatter;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
 using simple_odata.Data;
@@ -71,5 +72,33 @@ public class AlbumController(ChinookContext db) : ODataController
         db.SaveChanges();
 
         return NoContent();
+    }
+    
+    [EnableQuery]
+    [HttpPost("odata/Rate")]
+    public IActionResult IncrementBookYear(ODataActionParameters parameters)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest();
+        }
+
+        int rating = (int)parameters["Rating"];
+        int id = (int)parameters["id"];
+
+        db.Albums.SingleOrDefault((d => d.Id == id));
+        
+        //this is where you would rate the album
+
+        return Ok();
+    }
+    
+    [EnableQuery]
+    [HttpGet("odata/TopTenRatedAlbums")]
+    public IActionResult TopTenRatedAlbums()
+    {
+        //var albums = db.Albums.OrderBy(a => a.Rating).Take(10);
+        
+        return Ok();
     }
 }

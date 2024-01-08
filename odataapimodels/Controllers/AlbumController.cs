@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OData.Formatter;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
 using odataapimodels.Domain.ApiModels;
@@ -64,5 +65,31 @@ public class AlbumController(IChinookSupervisor sup, ILogger<AlbumController> lo
         }
 
         return NoContent();
+    }
+    
+    [EnableQuery]
+    [HttpPost("odata/Rate")]
+    public IActionResult IncrementBookYear(ODataActionParameters parameters)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest();
+        }
+
+        int rating = (int)parameters["Rating"];
+        int id = (int)parameters["id"];
+
+        // This where you would call the Supervisor method for rating an album
+
+        return Ok();
+    }
+    
+    [EnableQuery]
+    [HttpGet("odata/TopTenRatedAlbums")]
+    public IActionResult TopTenRatedAlbums()
+    {
+        //var albums = db.Albums.OrderBy(a => a.Rating).Take(10);
+        
+        return Ok();
     }
 }

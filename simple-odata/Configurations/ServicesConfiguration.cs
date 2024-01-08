@@ -19,6 +19,15 @@ public static class ServicesConfiguration
         builder.EntitySet<MediaType>("MediaTypes");
         builder.EntitySet<Playlist>("Playlists");
         builder.EntitySet<Track>("Tracks");
+        
+        var action = builder.Action("Rate").ReturnsFromEntitySet<Album>("albums");
+        action.Parameter<int>("Rating");
+        action.Parameter<int>("id");
+        
+        builder.EntityType<Album>().Collection
+            .Function("TopTenRatedAlbums")
+            .ReturnsCollectionFromEntitySet<Album>("Albums");
+        
         return builder.GetEdmModel();
     }
 }
