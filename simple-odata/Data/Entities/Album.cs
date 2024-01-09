@@ -1,4 +1,6 @@
-﻿namespace simple_odata.Data.Entities;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace simple_odata.Data.Entities;
 
 public partial class Album : BaseEntity
 {
@@ -8,6 +10,8 @@ public partial class Album : BaseEntity
     }
     
     public string Title { get; set; } = null!;
+    
+    [ForeignKey("Artist")]
     public int ArtistId { get; set; }
 
     public virtual Artist Artist { get; set; } = null!;

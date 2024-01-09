@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Formatter;
 using Microsoft.AspNetCore.OData.Query;
+using Microsoft.AspNetCore.OData.Results;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
 using simple_odata.Data;
 using simple_odata.Data.Entities;
@@ -72,6 +73,15 @@ public class AlbumController(ChinookContext db) : ODataController
         db.SaveChanges();
 
         return NoContent();
+    }
+
+    // GET /Albums(1)/Artist
+    [EnableQuery]
+    [HttpGet("odata/Albums({id})/Artist")]
+    public SingleResult<Artist> GetArtist([FromODataUri] int id)
+    {
+        var result = db.Albums.Where(a => a.Id == id).Select(a => a.Artist);
+        return SingleResult.Create(result);
     }
     
     [EnableQuery]
