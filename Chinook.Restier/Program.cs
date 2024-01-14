@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices;
 using Chinook.Restier.Controllers;
 using Chinook.Restier.Data;
 using Microsoft.AspNet.OData.Extensions;
@@ -7,7 +8,15 @@ using Microsoft.Restier.AspNetCore;
 using Microsoft.Restier.Core;
 
 var builder = WebApplication.CreateBuilder(args);
-var configuation = builder.Configuration;
+var configuration = builder.Configuration;
+
+var connection = String.Empty;
+
+if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+    connection = configuration.GetConnectionString("ChinookDbWindows");
+else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux) ||
+         RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+    connection = configuration.GetConnectionString("ChinookDbDocker");
 
 builder.Services.AddRestier((builder) =>
 {
@@ -15,7 +24,7 @@ builder.Services.AddRestier((builder) =>
     {
         routeServices
             .AddEFCoreProviderServices<ChinookContext>((services, options) =>
-                options.UseSqlServer(configuation.GetConnectionString("ChinookDbWindows")))
+                options.UseSqlServer(connection))
             .AddSingleton(new ODataValidationSettings
             {
                 MaxTop = 100,
